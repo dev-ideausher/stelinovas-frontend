@@ -188,3 +188,15 @@ input[type="number"] {
 .about-text {
   width: 40vw;
 }
+
+/* ROADMAP COMPONENT */
+.roadmap-container {
+  background-color: #0f053b;
+  height: 110vh;
+}
+
+/* FEATURES COMPONENT */
+.features-container {
+  height: 100vh;
+  background-color: #0f053b;
+}
