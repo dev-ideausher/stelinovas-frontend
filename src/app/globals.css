@@ -1,33 +1,190 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@import url("https://fonts.cdnfonts.com/css/knight-warrior");
+* {
+  margin: 0;
+  padding: 0;
+}
+.clip-trapezium {
+  clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
+}
+.marquee {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+.marquee div {
+  display: block;
+  width: 200%;
+  height: 30px;
+
+  position: absolute;
+  overflow: hidden;
+
+  animation: marquee 10s linear infinite;
+}
+
+.marquee span {
+  float: left;
+  width: 50%;
+  color: white;
+}
+
+@keyframes marquee {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: -100%;
   }
 }
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.navbar {
+  background: rgba(255, 255, 255, 0.07);
+  color: white;
+  display: flex;
+  max-width: 1000px; /* Set a max-width to prevent it from stretching too wide */
+  width: 100%; /* Make the width 100% to ensure it is responsive */
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 100px;
+  margin: auto; /* Center the div on the x-axis */
+  padding: 10px 30px;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 20px;
+}
+.stelinovas-logo-text {
+  color: #c0aaff;
+  font-family: "KNIGHT WARRIOR";
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%; /* 50.4px */
+}
+.navbar-btn {
+  color: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  background: var(
+    --Linear,
+    linear-gradient(90deg, #6254ff 35.28%, #756bed 50%)
+  );
+  font-family: Loaded;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%; /* 36.4px */
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+/* MEET COMPONENT */
+.meet-container {
+  display: flex;
+  background-color: #0f053b;
+}
+.left-div,
+.right-div {
+  display: flex;
+  width: 33%;
+  height: 120vh;
+  justify-content: center;
+  padding-top: 50vh;
+  z-index: 1;
+}
+.center-div {
+  display: flex;
+  flex-direction: column;
+  width: 33%;
+  height: 120vh;
+  justify-content: center;
+  padding-top: 25vh;
+  align-items: center;
+  z-index: 1;
+}
+.coin-input-container {
+  position: relative;
+}
+.coin-input {
+  width: 547px;
+  height: 75px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  border: 2px solid var(--Linear, #6254ff);
+  background: rgba(164, 119, 249, 0.1);
+  color: #fff;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 140%;
+  padding-left: 60px;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+.gold-coin {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 10px;
+}
+.wallet-btn {
+  width: 547px;
+  height: 71px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: var(
+    --Linear,
+    linear-gradient(90deg, #6254ff 35.28%, #756bed 50%)
+  );
+  color: white;
+  font-size: 19px;
+  margin-top: 10px;
+}
+.download-btn {
+  width: 547px;
+  height: 79px;
+  flex-shrink: 0;
+  border-color: #6254ff;
+  border-width: 2px;
+  border-radius: 10px;
+  color: white;
+  font-size: 19px;
+  margin-top: 10px;
+}
+.btn-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.overlay {
+  position: absolute;
+  top: 200px; /* Adjust top position slightly below top */
+  right: 400px; /* Adjust right position close to the edge */
+  z-index: 0; /* Place overlay image above background but below text */
+}
+
+/* ABOUT COMPONENT */
+.about-container {
+  background-color: #0f053b;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.about-coin,
+.about-text {
+  position: absolute;
+}
+.about-text {
+  width: 40vw;
 }
