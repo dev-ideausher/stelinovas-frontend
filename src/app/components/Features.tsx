@@ -1,36 +1,34 @@
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
+import SingleFeature from "./SingleFeature";
 
 const Features = () => {
   const charControls = useAnimation();
-  const leftUp = useAnimation();
-  const leftDown = useAnimation();
+  const leftControls = useAnimation();
+  const rightControls = useAnimation();
   const [ref, inView] = useInView();
 
   const variants = {
-    enrty: { opacity: 1, rotate: 360 },
-    exit: { opacity: 0, rotate: 0 },
+    enrtyChar: { opacity: 1, rotate: 360 },
+    exitChar: { opacity: 0, rotate: 0 },
+    entryLeft: { opacity: 1, x: 0 },
+    exitLeft: { opacity: 0, x: 200 },
+    entryRight: { opacity: 1, x: 0 },
+    exitRight: { opacity: 0, x: -200 },
   };
 
   useEffect(() => {
     if (inView) {
-      charControls.start("enrty");
-
-      // leftUp.start({
-      //   opacity: 1,
-      //   x: -100,
-      //   scale: 1.2,
-      // });
-      // leftDown.start({
-      //   opacity: 1,
-      //   x: 100,
-      //   scale: 1.2,
-      // });
+      charControls.start("enrtyChar");
+      leftControls.start("entryLeft");
+      rightControls.start("entryRight");
     } else {
-      charControls.start("exit");
+      charControls.start("exitChar");
+      leftControls.start("exitLeft");
+      rightControls.start("exitRight");
     }
-  }, [inView, charControls]);
+  }, [inView, charControls, leftControls, rightControls]);
 
   return (
     <div
@@ -47,27 +45,30 @@ const Features = () => {
         <span className="text-4xl text-[#a88aff]">FEATURES</span>
       </h1>
       <div className="flex">
-        <div className="flex-1 flex flex-col items-end justify-evenly">
-          <motion.h1
-          // ref={ref}
-          // initial={{ opacity: 0, scale: 0.2 }}
-          // animate={leftUp}
-          // transition={{}}
+        <div className="flex-1 flex flex-col items-center justify-evenly">
+          <motion.div
+            initial="exitLeft"
+            animate={leftControls}
+            variants={variants}
+            transition={{ duration: 1 }}
+            className="w-72"
           >
-            A
-          </motion.h1>
-          <motion.h1
-          // ref={ref}
-          // initial={{ opacity: 0, scale: 0.2 }}
-          // animate={leftDown}
+            <SingleFeature />
+          </motion.div>
+          <motion.div
+            initial="exitLeft"
+            animate={leftControls}
+            variants={variants}
+            transition={{ duration: 1 }}
+            className="w-72"
           >
-            B
-          </motion.h1>
+            <SingleFeature />
+          </motion.div>
         </div>
         <div className=" flex flex-1 justify-center items-start">
           <motion.img
             ref={ref}
-            initial="exit"
+            initial="exitChar"
             transition={{
               duration: 1,
             }}
@@ -79,9 +80,25 @@ const Features = () => {
             alt="char3"
           />
         </div>
-        <div className="flex-1 flex flex-col items-start justify-evenly">
-          <h1>A</h1>
-          <h1>B</h1>
+        <div className="flex-1 flex flex-col items-center justify-evenly">
+          <motion.div
+            initial="exitRight"
+            animate={rightControls}
+            variants={variants}
+            transition={{ duration: 1 }}
+            className="w-72"
+          >
+            <SingleFeature />
+          </motion.div>
+          <motion.div
+            initial="exitRight"
+            animate={rightControls}
+            variants={variants}
+            transition={{ duration: 1 }}
+            className="w-72"
+          >
+            <SingleFeature />
+          </motion.div>
         </div>
       </div>
     </div>
