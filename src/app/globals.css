@@ -192,11 +192,11 @@ input[type="number"] {
 /* ROADMAP COMPONENT */
 .roadmap-container {
   background-color: #0f053b;
-  height: 110vh;
+  height: 100vh;
 }
 
 /* FEATURES COMPONENT */
 .features-container {
-  height: 100vh;
+  height: 120vh;
   background-color: #0f053b;
 }

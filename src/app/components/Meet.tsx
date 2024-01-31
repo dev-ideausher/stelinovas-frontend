@@ -12,7 +12,7 @@ const Meet = () => {
 
   return (
     <div
-      className="meet-container"
+      className="meet-container py-10"
       style={{
         backgroundImage: `url("/images/star-back.png")`,
         backgroundSize: "cover",

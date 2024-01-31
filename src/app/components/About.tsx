@@ -5,23 +5,23 @@ import React, { useEffect } from "react";
 const About = () => {
   const controls = useAnimation();
   const divcontrols = useAnimation();
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-  });
+  const [ref, inView] = useInView();
+  const imgVariants = {
+    entry: { scale: 1.2, opacity: 1, x: 300, rotate: 360 },
+    exit: { scale: 1.8, opacity: 1, x: 0, rotate: 0 },
+  };
+  const divVariants = {
+    entry: { opacity: 1, scale: 1, x: -300 },
+    exit: { opacity: 0, scale: 0, x: 0 },
+  };
 
   useEffect(() => {
     if (inView) {
-      controls.start({
-        scale: 1.2,
-        opacity: 1,
-        x: 300,
-        rotate: 360,
-      });
-      divcontrols.start({
-        opacity: 1,
-        scale: 1,
-        x: -300,
-      });
+      controls.start("entry");
+      divcontrols.start("entry");
+    } else {
+      controls.start("exit");
+      divcontrols.start("exit");
     }
   }, [inView, controls, divcontrols]);
 
@@ -31,21 +31,20 @@ const About = () => {
         className="about-coin"
         src="/images/big-coin.png"
         ref={ref}
-        initial={{
-          scale: 1.8,
-          opacity: 1,
-        }}
+        initial="exit"
+        variants={imgVariants}
         animate={controls}
         transition={{
-          duration: 3,
+          duration: 2,
         }}
       />
       <motion.div
         ref={ref}
-        initial={{ opacity: 0, scale: 0 }}
+        initial="exit"
         animate={divcontrols}
+        variants={divVariants}
         transition={{
-          duration: 3,
+          duration: 2,
         }}
         className="about-text"
       >
