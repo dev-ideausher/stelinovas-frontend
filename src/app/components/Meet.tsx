@@ -30,9 +30,9 @@ const Meet = () => {
         />
       </div>
       <div className="center-div">
-        <h1 className="text-white font-loaded text-4xl font-normal font-semibold leading-normal">
+        <h1 className="text-white font-loaded text-4xl  font-semibold leading-normal">
           <span>MEET</span>{" "}
-          <span className="text-[#a88aff] font-loaded text-4xl font-normal font-semibold leading-normal">
+          <span className="text-[#a88aff] font-loaded text-4xl font-semibold leading-normal">
             STELINOVAS
           </span>
         </h1>

@@ -200,3 +200,53 @@ input[type="number"] {
   height: 120vh;
   background-color: #0f053b;
 }
+
+/* PARTNERS COMPONENT */
+.partners-container {
+  height: 100vh;
+  background-color: #0f053b;
+}
+
+/* PRODUCTS COMPONENT */
+.product-container {
+  background-color: #0f053b;
+  height: 1050px;
+}
+.product-card {
+  width: 352px;
+  height: 415px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: rgba(25, 11, 55, 0.6);
+}
+.product-btn {
+  display: flex;
+  width: 320px;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+  border: 2px solid #8f68ff;
+}
+.product-btn-text {
+  color: #8f68ff;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
+}
+.faq {
+  width: 1150px;
+  height: 457px;
+  flex-shrink: 0;
+  border-radius: 30px;
+  background: rgba(47, 47, 47, 0.5);
+}
+.faq-box {
+  width: 527px;
+  height: 113px;
+  flex-shrink: 0;
+  border-radius: 30px;
+  background: rgba(217, 217, 217, 0.2);
+}
