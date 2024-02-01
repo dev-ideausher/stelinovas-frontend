@@ -1,6 +1,7 @@
 "use client";
 
 import About from "./components/About";
+import Contact from "./components/Contact";
 import Features from "./components/Features";
 import Meet from "./components/Meet";
 import Navbar from "./components/Navbar";
@@ -31,6 +32,9 @@ export default function Home() {
       </div>
       <div className="h-screen">
         <Products />
+      </div>
+      <div className="h-screen">
+        <Contact />
       </div>
     </div>
   );

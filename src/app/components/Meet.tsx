@@ -22,11 +22,10 @@ const Meet = () => {
     >
       <div className="left-div">
         <Image
-          src="/images/tank.gif"
-          width={280}
-          height={280}
+          src="/images/char4.gif"
+          width={1200}
+          height={1800}
           alt="3dicons"
-          className="moon"
         />
       </div>
       <div className="center-div">

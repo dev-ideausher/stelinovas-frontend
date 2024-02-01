@@ -250,3 +250,38 @@ input[type="number"] {
   border-radius: 30px;
   background: rgba(217, 217, 217, 0.2);
 }
+
+/* CONTACT COMPONENT */
+.contact-container {
+  height: 100vh;
+  background-color: #0f053b;
+  margin-top: 450px;
+}
+.contact-box {
+  height: 176px;
+  width: 1100px;
+  background-color: rgba(217, 217, 217, 0.1);
+}
+.input-container {
+  position: relative; /* Allow for absolute positioning of the button */
+  display: inline-block; /* Ensure container doesn't expand to full width */
+}
+
+.input-container input {
+  border: 1px solid #ccc; /* Create the appearance of the input box */
+  border-radius: 5px;
+  padding: 10px;
+  height: 70px; /* Expand the input to fill the container */
+  background-color: rgba(217, 217, 217, 0.2);
+}
+
+.input-container button {
+  position: absolute; /* Position independently within the container */
+  top: 50%;
+  transform: translateY(-50%); /* Vertically center the button */
+  right: 10px; /* Adjust for spacing */
+  border: none; /* Remove default button border */
+  background-color: #a88aff; /* Make button background invisible */
+  border-radius: 7px;
+  padding: 5px;
+}
