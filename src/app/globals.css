@@ -285,3 +285,40 @@ input[type="number"] {
   border-radius: 7px;
   padding: 5px;
 }
+
+/* LOGIN PAGE */
+.login-container {
+  height: 150vh;
+  background-color: #0f053b;
+  padding-top: 10vh;
+}
+.input-container {
+  position: relative;
+}
+.email-input {
+  width: 547px;
+  height: 75px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  border: 2px solid var(--Linear, #6254ff);
+  background: rgba(164, 119, 249, 0.1);
+  color: #fff;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 140%;
+  padding-left: 60px;
+}
+.passwd-eye {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10px;
+}
+
+/* SIGNUP PAGE */
+.signup-container {
+  height: 150vh;
+  background-color: #0f053b;
+  padding-top: 10vh;
+}
