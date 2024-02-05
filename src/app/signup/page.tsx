@@ -73,6 +73,7 @@ export default function SignupPage() {
               type="text"
               placeholder="Name"
               {...register("name")}
+              autocomplete="off"
             />
             <CiUser className="gold-coin text-white text-4xl pl-2" />
           </div>
@@ -82,6 +83,7 @@ export default function SignupPage() {
               type="email"
               placeholder="Email"
               {...register("email")}
+              autocomplete="off"
             />
             <BsEnvelope className="gold-coin text-white text-4xl pl-2" />
           </div>
@@ -91,6 +93,7 @@ export default function SignupPage() {
               type={showPassword ? "text" : "password"}
               placeholder="Password"
               {...register("password")}
+              autocomplete="off"
             />
 
             <CiLock className="gold-coin text-4xl text-white pl-2" />
@@ -113,6 +116,7 @@ export default function SignupPage() {
               type={showPassword ? "text" : "password"}
               placeholder="Confirm password"
               {...register("confirmPassword")}
+              autocomplete="off"
             />
             <CiLock className="gold-coin text-4xl text-white pl-2" />
             {showPassword ? (
