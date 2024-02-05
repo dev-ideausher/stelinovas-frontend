@@ -1,12 +1,43 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import Topbar from "../components/Topbar";
 import Navbar from "../components/Navbar";
 import { BsEnvelope } from "react-icons/bs";
 import { CiLock } from "react-icons/ci";
-import { FaRegEye } from "react-icons/fa6";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
+import { ZodType, z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import Error from "../signup/components/Error";
+import { useState } from "react";
+
+type formData = {
+  email: string;
+  password: string;
+};
 
 export default function LoginPage() {
+  const [showPassword, setShowPassword] = useState(false);
+
+  const schema: ZodType<formData> = z.object({
+    email: z.string().email(),
+    password: z.string().min(5).max(20),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<formData>({
+    resolver: zodResolver(schema),
+  });
+
+  const submitData = (data: formData) => {
+    console.log(data);
+  };
+
   return (
     <div>
       <Topbar />
@@ -23,16 +54,39 @@ export default function LoginPage() {
         <div className="col-span-3 flex items-center justify-center">
           <Image src="/images/char4.png" height={220} width={220} alt="char4" />
         </div>
-        <div className="col-span-6 flex items-center flex-col pt-48">
+        <form
+          onSubmit={handleSubmit(submitData)}
+          className="col-span-6 flex items-center flex-col pt-48"
+        >
           <h1 className="text-4xl text-[#a88aff] font-bold pb-10">LOGIN</h1>
           <div className="coin-input-container mb-5">
-            <input className="coin-input" type="email" placeholder="Email" />
+            <input
+              className="coin-input"
+              type="email"
+              placeholder="Email"
+              {...register("email")}
+            />
             <BsEnvelope className="gold-coin text-white text-4xl pl-2" />
           </div>
           <div className="coin-input-container mb-5">
-            <input className="coin-input" type="text" placeholder="Password" />
+            <input
+              className="coin-input"
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              {...register("password")}
+            />
             <CiLock className="gold-coin text-4xl text-white pl-2" />
-            <FaRegEye className="passwd-eye text-white text-2xl" />
+            {showPassword ? (
+              <FaRegEyeSlash
+                onClick={() => setShowPassword(!showPassword)}
+                className="passwd-eye text-white text-2xl"
+              />
+            ) : (
+              <FaRegEye
+                onClick={() => setShowPassword(!showPassword)}
+                className="passwd-eye text-white text-2xl"
+              />
+            )}
           </div>
           <div className="ml-auto mr-12 mb-5">
             <p className="text-white">Forgot password?</p>
@@ -52,6 +106,8 @@ export default function LoginPage() {
               <span className="font-bold underline">privacy and policy</span>
             </label>
           </div>
+          {errors.email && <Error msg={errors.email.message} />}
+          {errors.password && <Error msg={errors.password.message} />}
           <button className="wallet-btn mb-5">
             <div className="btn-content font-bold">Login</div>
           </button>
@@ -62,7 +118,7 @@ export default function LoginPage() {
             </Link>{" "}
             here
           </div>
-        </div>
+        </form>
 
         <div className="col-span-3 flex items-center justify-center">
           <Image

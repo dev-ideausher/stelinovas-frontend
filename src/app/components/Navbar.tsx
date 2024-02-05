@@ -19,7 +19,7 @@ const Navbar = () => {
       <p>Roadmap</p>
       <p>Product</p>
       <p>Contact</p>
-      <p>
+      <p className="hover:font-semibold">
         <Link href="/login">Sign In</Link>
       </p>
       <button className="navbar-btn">BUY NOW</button>

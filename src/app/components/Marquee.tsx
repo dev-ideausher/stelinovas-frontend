@@ -1,5 +1,4 @@
 const Marquee = ({ text, size }: any) => {
-  console.log(text);
   return (
     <div className="marquee flex items-center">
       <div>
