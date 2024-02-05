@@ -65,7 +65,7 @@ export default function LoginPage() {
               type="email"
               placeholder="Email"
               {...register("email")}
-              autocomplete="off"
+              autoComplete="off"
             />
             <BsEnvelope className="gold-coin text-white text-4xl pl-2" />
           </div>
@@ -75,7 +75,7 @@ export default function LoginPage() {
               type={showPassword ? "text" : "password"}
               placeholder="Password"
               {...register("password")}
-              autocomplete="off"
+              autoComplete="off"
             />
             <CiLock className="gold-coin text-4xl text-white pl-2" />
             {showPassword ? (
