@@ -1,3 +1,4 @@
+"use client";
 const Contact = () => {
   return (
     <div className="contact-container flex justify-center items-center">

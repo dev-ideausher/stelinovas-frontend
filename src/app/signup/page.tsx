@@ -10,8 +10,10 @@ import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import { ZodType, z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Error from "./components/Error";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth } from "../../../config/firebase";
 
 type formData = {
   name: string;
@@ -22,6 +24,7 @@ type formData = {
 
 export default function SignupPage() {
   const [showPassword, setShowPassword] = useState(false);
+
   const schema: ZodType<formData> = z
     .object({
       name: z.string().min(2).max(30),
@@ -42,8 +45,17 @@ export default function SignupPage() {
     resolver: zodResolver(schema),
   });
 
-  const submitData = (data: formData) => {
-    console.log(data);
+  const submitData = async (data: formData) => {
+    try {
+      const user = await createUserWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password
+      );
+      console.log("User created", user);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

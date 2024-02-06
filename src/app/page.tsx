@@ -8,8 +8,19 @@ import Partners from "./components/Partners";
 import Products from "./components/Products";
 import Roadmap from "./components/Roadmap";
 import Topbar from "./components/Topbar";
+import { auth } from "../../config/firebase";
+import { useEffect, useState } from "react";
+import { onAuthStateChanged } from "firebase/auth";
 
 export default function Home() {
+  const [currUser, setCurrUser] = useState(null);
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user: any) => {
+      setCurrUser(user);
+    });
+    return () => unsubscribe();
+  }, [setCurrUser]);
+  console.log(currUser);
   return (
     <div>
       <Topbar />

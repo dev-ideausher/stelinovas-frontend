@@ -12,13 +12,15 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Error from "../signup/components/Error";
 import { useState } from "react";
-
+import { auth } from "../../../config/firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
 type formData = {
   email: string;
   password: string;
 };
 
 export default function LoginPage() {
+  console.log(auth.currentUser);
   const [showPassword, setShowPassword] = useState(false);
 
   const schema: ZodType<formData> = z.object({
@@ -34,8 +36,17 @@ export default function LoginPage() {
     resolver: zodResolver(schema),
   });
 
-  const submitData = (data: formData) => {
-    console.log(data);
+  const submitData = async (data: formData) => {
+    try {
+      const user = await signInWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password
+      );
+      console.log("Signed In ", user);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
