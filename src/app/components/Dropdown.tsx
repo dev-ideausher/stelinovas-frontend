@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useFirebaseContext } from "../../contexts/firebaseContext";
 import { auth } from "../../../config/firebase";
 import { signOut } from "firebase/auth";
+import { toast } from "react-toastify";
 
 function Dropdown() {
   const { user } = useFirebaseContext();
@@ -15,6 +16,9 @@ function Dropdown() {
   const signOutUser = async () => {
     try {
       await signOut(auth);
+      toast.success("User Signed out!", {
+        position: "top-right",
+      });
       console.log("User logged out");
     } catch (error) {
       console.log(error);
@@ -40,7 +44,7 @@ function Dropdown() {
             onClick={() => signOutUser()}
             className="px-4 py-2 text-gray-700 hover:cursor-pointer"
           >
-            Logout
+            Sign Out
           </li>
         </ul>
       )}

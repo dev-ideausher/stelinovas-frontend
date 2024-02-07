@@ -16,6 +16,7 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../../../config/firebase";
 import { useRouter } from "next/navigation";
 import { useFirebaseContext } from "../../contexts/firebaseContext";
+import { toast } from "react-toastify";
 
 type formData = {
   name: string;
@@ -67,10 +68,16 @@ export default function SignupPage() {
         displayName: data.name,
       });
       setUser(currUser);
+      toast.success(`Welcome ${currUser.displayName}!`, {
+        position: "top-right",
+      });
       console.log("User created successfully with display name:", data.name);
       router.push("/");
-    } catch (error) {
-      console.error("Error creating user:", error);
+    } catch (error: any) {
+      toast.error(error.message, {
+        position: "top-right",
+      });
+      console.error("Error creating user:", error.message);
     }
   };
 

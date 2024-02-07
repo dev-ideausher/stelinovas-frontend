@@ -16,6 +16,7 @@ import { auth } from "../../../config/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { useFirebaseContext } from "../../contexts/firebaseContext";
+import { toast } from "react-toastify";
 type formData = {
   email: string;
   password: string;
@@ -53,10 +54,16 @@ export default function LoginPage() {
         data.password
       );
       console.log("Signed In ", currUser);
+      toast.success(`Welcome ${currUser.user.displayName}!`, {
+        position: "top-right",
+      });
       setUser(currUser.user);
       router.push("/");
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      toast.error(error.message, {
+        position: "top-right",
+      });
+      console.log(error.message);
     }
   };
 
