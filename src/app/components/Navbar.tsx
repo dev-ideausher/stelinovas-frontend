@@ -2,21 +2,12 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { signOut } from "firebase/auth";
-import { auth } from "../../../config/firebase";
 import { useFirebaseContext } from "../../contexts/firebaseContext";
+import Dropdown from "./Dropdown";
 
 const Navbar = () => {
   const { user } = useFirebaseContext();
   console.log("Navbar ", user);
-  const signOutUser = async () => {
-    try {
-      await signOut(auth);
-      console.log("User logged out");
-    } catch (error) {
-      console.log(error);
-    }
-  };
   return (
     <div style={{ zIndex: 2 }} className="navbar fixed left-0">
       <Link href="/">
@@ -35,15 +26,9 @@ const Navbar = () => {
       <p>Product</p>
       <p>Contact</p>
       <p className="hover:font-semibold">
-        {user ? (
-          <button onClick={signOutUser}>Logout</button>
-        ) : (
-          <Link href="/login">Sign In</Link>
-        )}
+        {user ? <Dropdown /> : <Link href="/login">Sign In</Link>}
       </p>
-      <button className="navbar-btn" onClick={signOutUser}>
-        BUY NOW
-      </button>
+      <button className="navbar-btn">BUY NOW</button>
     </div>
   );
 };
