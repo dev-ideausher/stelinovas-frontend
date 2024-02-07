@@ -4,9 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { signOut } from "firebase/auth";
 import { auth } from "../../../config/firebase";
+import { useFirebaseContext } from "../../contexts/firebaseContext";
 
 const Navbar = () => {
-  const user = auth?.currentUser;
+  const { user } = useFirebaseContext();
+  console.log("Navbar ", user);
   const signOutUser = async () => {
     try {
       await signOut(auth);

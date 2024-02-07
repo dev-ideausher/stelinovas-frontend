@@ -14,6 +14,8 @@ import { useEffect, useState } from "react";
 import Error from "./components/Error";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../../../config/firebase";
+import { useRouter } from "next/navigation";
+import { useFirebaseContext } from "../../contexts/firebaseContext";
 
 type formData = {
   name: string;
@@ -23,6 +25,14 @@ type formData = {
 };
 
 export default function SignupPage() {
+  const { user, setUser } = useFirebaseContext();
+  console.log("Signup page ", user);
+  const router = useRouter();
+  useEffect(() => {
+    if (user) {
+      router.push("/");
+    }
+  }, [router, user]);
   const [showPassword, setShowPassword] = useState(false);
 
   const schema: ZodType<formData> = z
@@ -47,14 +57,20 @@ export default function SignupPage() {
 
   const submitData = async (data: formData) => {
     try {
-      const user = await createUserWithEmailAndPassword(
+      const userCredential = await createUserWithEmailAndPassword(
         auth,
         data.email,
         data.password
       );
-      console.log("User created", user);
+      const currUser = userCredential.user;
+      await updateProfile(currUser, {
+        displayName: data.name,
+      });
+      setUser(currUser);
+      console.log("User created successfully with display name:", data.name);
+      router.push("/");
     } catch (error) {
-      console.log(error);
+      console.error("Error creating user:", error);
     }
   };
 

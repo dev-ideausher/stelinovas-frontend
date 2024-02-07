@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
+
 const Meet = () => {
   const rotateAnimation = {
     rotate: [0, 360], // Rotate from 0 to 360 degrees

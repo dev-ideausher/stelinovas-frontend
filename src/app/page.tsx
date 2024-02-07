@@ -11,17 +11,11 @@ import Topbar from "./components/Topbar";
 import { auth } from "../../config/firebase";
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
+import { FirebaseProvider } from "@/contexts/firebaseContext";
 
 export default function Home() {
-  const [currUser, setCurrUser] = useState(null);
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user: any) => {
-      setCurrUser(user);
-    });
-    return () => unsubscribe();
-  }, [setCurrUser]);
-  console.log(currUser);
   return (
+    // <FirebaseProvider>
     <div>
       <Topbar />
       <Navbar />
@@ -47,5 +41,6 @@ export default function Home() {
         <Contact />
       </div>
     </div>
+    // </FirebaseProvider>
   );
 }
