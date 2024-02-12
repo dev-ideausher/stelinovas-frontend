@@ -1,7 +1,39 @@
+"use client";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import detectEthereumProvider from "@metamask/detect-provider";
 
 const Meet = () => {
+  const [hasProvider, setHasProvider] = useState<boolean | null>(null);
+  const initialState = { accounts: [] };
+  const [chainId, setChainId] = useState(null);
+  const [wallet, setWallet] = useState(initialState);
+
+  useEffect(() => {
+    const getProvider = async () => {
+      const provider = await detectEthereumProvider({ silent: true });
+      console.log("Provider ", provider);
+      setHasProvider(Boolean(provider));
+    };
+    getProvider();
+    console.log("Provider ", hasProvider);
+  }, [hasProvider]);
+
+  const updateWallet = async (accounts: any) => {
+    setWallet({ accounts });
+  };
+
+  const handleConnect = async () => {
+    let accounts = await window.ethereum.request({
+      method: "eth_requestAccounts",
+    });
+    const chId = await window.ethereum.request({ method: "eth_chainId" });
+    updateWallet(accounts);
+    setChainId(chId);
+    console.log("Wallet:", wallet, "Chain id:", chainId);
+  };
+
   const rotateAnimation = {
     rotate: [0, 360], // Rotate from 0 to 360 degrees
     transition: {
@@ -10,7 +42,6 @@ const Meet = () => {
       repeat: Infinity, // Repeat the animation indefinitely
     },
   };
-
   return (
     <div
       className="meet-container py-10"
@@ -49,7 +80,7 @@ const Meet = () => {
             alt="gold-coin"
           />
         </div>
-        <button className="wallet-btn">
+        <button className="wallet-btn" onClick={handleConnect}>
           <div className="btn-content">
             <Image
               src="/images/wallet.png"

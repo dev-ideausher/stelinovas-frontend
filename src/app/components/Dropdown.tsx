@@ -39,12 +39,15 @@ function Dropdown() {
         )}
       </button>
       {isOpen && (
-        <ul className="absolute z-10 bg-white mt-2 rounded-lg shadow-md w-40">
+        <ul className="absolute z-10 bg-[#0f053b]  mt-2 rounded-lg shadow-md w-40">
+          <li className="px-4 py-2  hover:cursor-pointer text-white">
+            Change Wallet
+          </li>
           <li
             onClick={() => signOutUser()}
-            className="px-4 py-2 text-gray-700 hover:cursor-pointer"
+            className="px-4 py-2  hover:cursor-pointer text-white"
           >
-            Sign Out
+            Logout
           </li>
         </ul>
       )}
