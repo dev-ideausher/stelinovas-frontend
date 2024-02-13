@@ -6,66 +6,76 @@ import detectEthereumProvider from "@metamask/detect-provider";
 import { toast } from "react-toastify";
 import Web3Modal from "web3modal";
 import { ethers } from "ethers";
+import abi from "./abi.json";
 
 const Meet = () => {
-  // const providerOptions = {};
-  // const handleConnect = async () => {
-  //   try {
-  //     let web3Modal = new Web3Modal({
-  //       cacheProvider: false,
-  //       providerOptions,
-  //     });
-  //     const web3ModalInstance = await web3Modal.connect();
-  //     const web3ModalProvider = new ethers.BrowserProvider(web3ModalInstance);
-  //     console.log(web3ModalProvider);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-  const [hasProvider, setHasProvider] = useState<boolean | null>(null);
-  const [chainId, setChainId] = useState(null);
-  const [account, setAccount] = useState([null]);
+  const [currentAccount, setCurrentAccount] = useState<string>("");
+  const [tokenAmount, setTokenAmount] = useState<number>(0);
+  const contractABI = abi.abi;
+  const contractAddress = "0x8092FF3ff271E1FC5E439543470b7eE88Ae09b20";
+  const Ethereum = typeof window !== "undefined" && window.ethereum;
 
-  useEffect(() => {
-    const getProvider = async () => {
-      const provider = await detectEthereumProvider({ silent: true });
-      console.log("Provider ", provider);
-      setHasProvider(Boolean(provider));
-    };
-    getProvider();
-    console.log("Provider ", hasProvider);
-  }, [hasProvider]);
-
-  const updateWallet = async (accounts: any) => {
-    setAccount(accounts[0]);
-  };
-
-  const handleConnect = async () => {
-    if (window.ethereum) {
-      let accounts = await window.ethereum.request({
+  const connect = async () => {
+    try {
+      if (!Ethereum) {
+        toast.error("No Ethereum mask", { position: "top-right" });
+        return;
+      }
+      const accounts = await Ethereum.request({
         method: "eth_requestAccounts",
       });
-      setAccount(accounts[0]);
-      const chId = await window.ethereum.request({ method: "eth_chainId" });
-      updateWallet(accounts);
-      if (chId == "0x13881") {
-        setChainId(chId);
-      } else {
-        await window.ethereum.request({
-          method: "wallet_switchEthereumChain",
-          params: [
-            {
-              chainId: "0x13881",
-            },
-          ],
-        });
-        toast.success("Network switched!", { position: "top-right" });
+      if (accounts.length === 0) {
+        toast.error("No authorised account", { position: "top-right" });
+        return;
       }
-      console.log("Account addr:", account, "Chain id:", chId);
-      toast.success(`Connected to wallet`, {
-        position: "top-right",
+      console.log(accounts[0]);
+      setCurrentAccount(accounts[0]);
+      toast.success("Wallet connected", { position: "top-right" });
+      const chainId = await Ethereum.request({ method: "eth_chainId" });
+      if (chainId == "0x13881") {
+        console.log(chainId);
+      } else {
+        await Ethereum.request({
+          method: "wallet_switchEthereumChain",
+          params: [{ chainId: "0x13881" }],
+        });
+        toast.success("Netowrk switched", { position: "top-right" });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const getContract = async () => {
+    const provider = new ethers.BrowserProvider(Ethereum);
+    const signer = await provider.getSigner();
+    const contract = new ethers.Contract(contractAddress, contractABI, signer);
+    return contract;
+  };
+
+  const buyTokens = async (tokenAmount: number) => {
+    try {
+      if (!Ethereum) {
+        toast.error("Ethereum object not found", { position: "top-right" });
+        return;
+      }
+      if (!currentAccount) {
+        toast.error("No account connected", { position: "top-right" });
+        return;
+      }
+
+      const contract = await getContract();
+      const amountInWei = ethers.parseEther(tokenAmount.toString());
+
+      const transaction = await contract.buyTokens(amountInWei, {
+        value: amountInWei,
       });
-    } else {
+
+      await transaction.wait();
+
+      toast.success("Tokens purchased successfully", { position: "top-right" });
+    } catch (error: any) {
+      toast.error(error.message, { position: "top-right" });
+      console.log(error.message);
     }
   };
 
@@ -106,7 +116,13 @@ const Meet = () => {
           The best game in 2023 with a lot of features
         </p>
         <div className="coin-input-container">
-          <input className="coin-input" type="number" placeholder="0.0" />
+          <input
+            className="coin-input"
+            type="number"
+            placeholder="0.0"
+            value={tokenAmount}
+            onChange={(e) => setTokenAmount(parseFloat(e.target.value))}
+          />
           <Image
             className="gold-coin"
             src="/images/gold-coin.png"
@@ -115,7 +131,8 @@ const Meet = () => {
             alt="gold-coin"
           />
         </div>
-        <button className="wallet-btn" onClick={handleConnect}>
+        {}
+        <button className="wallet-btn" onClick={connect}>
           <div className="btn-content">
             <Image
               src="/images/wallet.png"
@@ -124,13 +141,9 @@ const Meet = () => {
               alt="wallet"
             />
             Connect wallet
-            {/* {account[0]
-              ? ` Address: ${account.slice(0, 15)}....
-                `
-              : "Connect Wallet"} */}
           </div>
         </button>
-        <button className="download-btn">
+        <button className="download-btn" onClick={() => buyTokens(tokenAmount)}>
           <div className="btn-content">
             <Image
               src="/images/ion_download.png"
