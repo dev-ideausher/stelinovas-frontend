@@ -3,12 +3,28 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import detectEthereumProvider from "@metamask/detect-provider";
+import { toast } from "react-toastify";
+import Web3Modal from "web3modal";
+import { ethers } from "ethers";
 
 const Meet = () => {
+  // const providerOptions = {};
+  // const handleConnect = async () => {
+  //   try {
+  //     let web3Modal = new Web3Modal({
+  //       cacheProvider: false,
+  //       providerOptions,
+  //     });
+  //     const web3ModalInstance = await web3Modal.connect();
+  //     const web3ModalProvider = new ethers.BrowserProvider(web3ModalInstance);
+  //     console.log(web3ModalProvider);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
   const [hasProvider, setHasProvider] = useState<boolean | null>(null);
-  const initialState = { accounts: [] };
   const [chainId, setChainId] = useState(null);
-  const [wallet, setWallet] = useState(initialState);
+  const [account, setAccount] = useState([null]);
 
   useEffect(() => {
     const getProvider = async () => {
@@ -21,17 +37,36 @@ const Meet = () => {
   }, [hasProvider]);
 
   const updateWallet = async (accounts: any) => {
-    setWallet({ accounts });
+    setAccount(accounts[0]);
   };
 
   const handleConnect = async () => {
-    let accounts = await window.ethereum.request({
-      method: "eth_requestAccounts",
-    });
-    const chId = await window.ethereum.request({ method: "eth_chainId" });
-    updateWallet(accounts);
-    setChainId(chId);
-    console.log("Wallet:", wallet, "Chain id:", chainId);
+    if (window.ethereum) {
+      let accounts = await window.ethereum.request({
+        method: "eth_requestAccounts",
+      });
+      setAccount(accounts[0]);
+      const chId = await window.ethereum.request({ method: "eth_chainId" });
+      updateWallet(accounts);
+      if (chId == "0x13881") {
+        setChainId(chId);
+      } else {
+        await window.ethereum.request({
+          method: "wallet_switchEthereumChain",
+          params: [
+            {
+              chainId: "0x13881",
+            },
+          ],
+        });
+        toast.success("Network switched!", { position: "top-right" });
+      }
+      console.log("Account addr:", account, "Chain id:", chId);
+      toast.success(`Connected to wallet`, {
+        position: "top-right",
+      });
+    } else {
+    }
   };
 
   const rotateAnimation = {
@@ -88,7 +123,11 @@ const Meet = () => {
               height={30}
               alt="wallet"
             />
-            Connect Wallet
+            Connect wallet
+            {/* {account[0]
+              ? ` Address: ${account.slice(0, 15)}....
+                `
+              : "Connect Wallet"} */}
           </div>
         </button>
         <button className="download-btn">
