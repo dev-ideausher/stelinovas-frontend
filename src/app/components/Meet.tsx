@@ -13,7 +13,7 @@ const Meet = () => {
   const [currentAccount, setCurrentAccount] = useState<string>("");
   const [tokenAmount, setTokenAmount] = useState<number>(0);
   const contractABI = abi.abi;
-  const contractAddress = "0x8092FF3ff271E1FC5E439543470b7eE88Ae09b20";
+  const contractAddress = "0x7e6b538CE8c005A28F06cd034804f8a09c29CAd9";
   const Ethereum = typeof window !== "undefined" && window.ethereum;
 
   const connect = async () => {
@@ -65,10 +65,14 @@ const Meet = () => {
       }
 
       const contract = await getContract();
-      const amountInWei = ethers.parseEther(tokenAmount.toString());
+      const pricePerToken= await contract.getRate();
+      console.log("<===================== price per token =====================>", pricePerToken.toString());
+      const amount= Number(pricePerToken )* tokenAmount;
+      const amountInEth=ethers.parseEther(amount.toString());
 
-      const transaction = await contract.buyTokens(amountInWei, {
-        value: amountInWei,
+
+      const transaction = await contract.buyTokens(tokenAmount, {
+        value: amountInEth,
       });
 
       await transaction.wait();
