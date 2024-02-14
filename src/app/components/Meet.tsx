@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import Web3Modal from "web3modal";
 import { ethers } from "ethers";
 import abi from "./abi.json";
+import { IoMdWallet } from "react-icons/io";
 
 const Meet = () => {
   const [currentAccount, setCurrentAccount] = useState<string>("");
@@ -131,15 +132,9 @@ const Meet = () => {
             alt="gold-coin"
           />
         </div>
-        {}
         <button className="wallet-btn" onClick={connect}>
           <div className="btn-content">
-            <Image
-              src="/images/wallet.png"
-              width={30}
-              height={30}
-              alt="wallet"
-            />
+            <IoMdWallet className="text-3xl" />
             Connect wallet
           </div>
         </button>
