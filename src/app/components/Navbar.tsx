@@ -20,7 +20,7 @@ const Navbar = () => {
       style={{ zIndex: 5 }}
       className="flex fixed flex-wrap items-center justify-between py-5 px-7 rounded-sm bg-navbar-bg-color sm:w-80 md:w-auto mt-10"
     >
-      <div className="h-10 flex justify-center items-center">
+      <Link href="/" className="h-10 flex justify-center items-center">
         <Image
           src="/images/3dicons.png"
           alt="ACME"
@@ -31,7 +31,7 @@ const Navbar = () => {
         <h1 className="text-[#c0aaff] mr-20 sm:text-xl md:text-2xl ">
           STELINOVAS
         </h1>
-      </div>
+      </Link>
       <div className="hidden md:flex justify-evenly w-full md:w-auto">
         <Link href="#" className="text-white hover:text-blue-500 px-3 py-3">
           About

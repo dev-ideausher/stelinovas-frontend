@@ -82,7 +82,9 @@ export default function SignupPage() {
 
   return (
     <div>
-      <Navbar />
+      <div className="w-screen flex justify-center ">
+        <Navbar />
+      </div>
       <div
         className="signup-container py-10 grid grid-cols-12"
         style={{
@@ -92,12 +94,12 @@ export default function SignupPage() {
           zIndex: -1,
         }}
       >
-        <div className="col-span-3 flex items-center justify-center">
+        <div className="hidden sm:block sm:col-span-3 flex items-center justify-center">
           <Image src="/images/char4.png" height={220} width={220} alt="char4" />
         </div>
         <form
           onSubmit={handleSubmit(submitData)}
-          className="col-span-6 flex items-center flex-col pt-48"
+          className="col-span-12 sm:col-span-6 flex items-center flex-col pt-24 md:pt-48"
         >
           <h1 className="text-4xl text-[#a88aff] font-bold pb-10">SIGNUP</h1>
           <div className="coin-input-container mb-5">
@@ -183,7 +185,7 @@ export default function SignupPage() {
           </div>
         </form>
 
-        <div className="col-span-3 flex items-center justify-center">
+        <div className="hidden sm:block sm:col-span-3 flex items-center justify-center">
           <Image
             src="/images/running.gif"
             width={500}

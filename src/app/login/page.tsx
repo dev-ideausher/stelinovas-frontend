@@ -16,12 +16,14 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { useFirebaseContext } from "../../contexts/firebaseContext";
 import { toast } from "react-toastify";
+import useScreenWidth from "../hooks/useScreenWidth";
 type formData = {
   email: string;
   password: string;
 };
 
 export default function LoginPage() {
+  const width = useScreenWidth();
   const { user, setUser } = useFirebaseContext();
   console.log("Login page ", user);
   const router = useRouter();
@@ -68,7 +70,9 @@ export default function LoginPage() {
 
   return (
     <div>
-      <Navbar />
+      <div className="w-screen flex justify-center ">
+        <Navbar />
+      </div>
       <div
         className="login-container py-10 grid grid-cols-12"
         style={{
@@ -78,12 +82,13 @@ export default function LoginPage() {
           zIndex: -1,
         }}
       >
-        <div className="col-span-3 flex items-center justify-center">
+        <div className="hidden sm:block sm:col-span-3 flex items-center justify-center">
           <Image src="/images/char4.png" height={220} width={220} alt="char4" />
         </div>
+
         <form
           onSubmit={handleSubmit(submitData)}
-          className="col-span-6 flex items-center flex-col pt-48"
+          className="col-span-12 sm:col-span-6 flex items-center flex-col pt-24 md:pt-48"
         >
           <h1 className="text-4xl text-[#a88aff] font-bold pb-10">LOGIN</h1>
           <div className="coin-input-container mb-5">
@@ -149,7 +154,7 @@ export default function LoginPage() {
           </div>
         </form>
 
-        <div className="col-span-3 flex items-center justify-center">
+        <div className="hidden sm:block sm:col-span-3 flex items-center justify-center">
           <Image
             src="/images/running.gif"
             width={500}
