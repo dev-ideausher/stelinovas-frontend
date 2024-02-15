@@ -12,14 +12,14 @@ const Products = () => {
         backgroundRepeat: "no-repeat",
         zIndex: -1,
       }}
-      className="product-container flex flex-col bg-[#0f053b]"
+      className=" flex flex-col bg-[#0f053b]"
     >
       <h1 className="text-center mb-10 pt-10">
         <span className="text-4xl text-white">OUR</span>{" "}
         <span className="text-4xl text-[#a88aff]">PRODUCTS</span>
       </h1>
 
-      <div className="flex md:flex-row flex-col justify-evenly items-center">
+      <div className="flex md:flex-row flex-col gap-5 justify-evenly items-center">
         <div>
           <ProductCard
             title="SCNV GROW"
@@ -43,7 +43,7 @@ const Products = () => {
         </div>
       </div>
 
-      <div className="bg-faq-color mt-10 flex flex-col justify-evenly mx-7 rounded-xl">
+      <div className="bg-faq-color mt-16 flex flex-col justify-evenly mx-7 rounded-xl">
         <h1 className="text-4xl text-white text-center mt-7 font-bold">FAQ</h1>
         <div className="flex md:flex-row flex-col justify-evenly items-center">
           <div className="mb-5">

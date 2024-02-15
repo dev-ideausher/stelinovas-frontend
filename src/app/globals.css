@@ -226,7 +226,7 @@ input[type="number"] {
 
 /* FEATURES COMPONENT */
 .features-container {
-  height: 120vh;
+  height: auto;
   background-color: #0f053b;
 }
 

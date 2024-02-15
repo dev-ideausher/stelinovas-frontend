@@ -30,7 +30,7 @@ export default function Home() {
       <div>
         <Roadmap />
       </div>
-      <div className="h-screen">
+      <div>
         <Features />
       </div>
       <div>

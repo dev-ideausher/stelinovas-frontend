@@ -26,9 +26,11 @@ const Navbar = () => {
           alt="ACME"
           width={50}
           height={50}
-          className="mr-2"
+          className=" mr-2 "
         />
-        <h1 className="text-[#c0aaff] md:text-2xl text-xl">STELINOVAS</h1>
+        <h1 className="text-[#c0aaff] mr-20 sm:text-xl md:text-2xl ">
+          STELINOVAS
+        </h1>
       </div>
       <div className="hidden md:flex justify-evenly w-full md:w-auto">
         <Link href="#" className="text-white hover:text-blue-500 px-3 py-3">

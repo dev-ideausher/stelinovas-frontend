@@ -67,7 +67,7 @@ const About = () => {
         }}
         className="about-text"
       >
-        <h1 className="sm:text-3xl md:text-4xl text-white mb-2">
+        <h1 className="sm:text-3xl md:text-4xl text-white mb-2 font-bold">
           WHAT IS <br /> ICO OSCAR COIN?
         </h1>
         <p className="text-white">
