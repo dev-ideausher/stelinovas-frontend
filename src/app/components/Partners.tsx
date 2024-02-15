@@ -1,5 +1,3 @@
-import Marquee from "./Marquee";
-
 const Partners = () => {
   return (
     <div className="partners-container">

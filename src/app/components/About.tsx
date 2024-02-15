@@ -10,6 +10,8 @@ const About = () => {
   const imgVariants = {
     entry: { scale: 1.2, opacity: 1, x: 300, rotate: 360 },
     exit: { scale: 1.8, opacity: 1, x: 0, rotate: 0 },
+    mobileEntry: { scale: 1, opacity: 1, y: 200, rotate: 360 },
+    mobileExit: { scale: 1.5, opacity: 1, y: 0, rotate: 0 },
   };
   const divVariants = {
     entry: { opacity: 1, scale: 1, x: -300 },

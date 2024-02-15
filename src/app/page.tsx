@@ -24,15 +24,15 @@ export default function Home() {
       <div>
         <Meet />
       </div>
-      {/* <div className="h-screen">
+      <div className="h-screen">
         <About />
-      </div> */}
+      </div>
       <div>
         <Roadmap />
       </div>
-      {/* <div className="h-screen">
+      <div className="h-screen">
         <Features />
-      </div> */}
+      </div>
       <div>
         <Partners />
       </div>
