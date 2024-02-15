@@ -7,39 +7,41 @@ import Navbar from "./components/Navbar";
 import Partners from "./components/Partners";
 import Products from "./components/Products";
 import Roadmap from "./components/Roadmap";
-import Topbar from "./components/Topbar";
 import { auth } from "../../config/firebase";
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { FirebaseProvider } from "@/contexts/firebaseContext";
 
 export default function Home() {
+  const screenWidth = typeof window !== "undefined" && window.innerWidth;
+  console.log(typeof screenWidth);
   return (
     // <FirebaseProvider>
     <div>
-      <Topbar />
-      <Navbar />
+      <div className="w-screen flex justify-center">
+        <Navbar />
+      </div>
       <div>
         <Meet />
       </div>
-      <div className="h-screen">
+      {/* <div className="h-screen">
         <About />
-      </div>
-      <div className="h-screen">
+      </div> */}
+      <div>
         <Roadmap />
       </div>
-      <div className="h-screen">
+      {/* <div className="h-screen">
         <Features />
-      </div>
-      <div className="h-screen">
+      </div> */}
+      <div>
         <Partners />
       </div>
-      <div className="h-screen">
+      <div>
         <Products />
       </div>
-      <div className="h-screen">
+      {/* <div className="h-screen">
         <Contact />
-      </div>
+      </div> */}
     </div>
     // </FirebaseProvider>
   );

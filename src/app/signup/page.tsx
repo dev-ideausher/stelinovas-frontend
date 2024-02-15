@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import Topbar from "../components/Topbar";
 import Navbar from "../components/Navbar";
 import { BsEnvelope } from "react-icons/bs";
 import { CiLock, CiUser } from "react-icons/ci";
@@ -83,7 +82,6 @@ export default function SignupPage() {
 
   return (
     <div>
-      <Topbar />
       <Navbar />
       <div
         className="signup-container py-10 grid grid-cols-12"

@@ -65,11 +65,13 @@ const Meet = () => {
       }
 
       const contract = await getContract();
-      const pricePerToken= await contract.getRate();
-      console.log("<===================== price per token =====================>", pricePerToken.toString());
-      const amount= Number(pricePerToken )* tokenAmount;
-      const amountInEth=ethers.parseEther(amount.toString());
-
+      const pricePerToken = await contract.getRate();
+      console.log(
+        "<===================== price per token =====================>",
+        pricePerToken.toString()
+      );
+      const amount = Number(pricePerToken) * tokenAmount;
+      const amountInEth = ethers.parseEther(amount.toString());
 
       const transaction = await contract.buyTokens(tokenAmount, {
         value: amountInEth,
@@ -94,7 +96,7 @@ const Meet = () => {
   };
   return (
     <div
-      className="meet-container py-10"
+      className="grid grid-cols-2 md:grid-cols-4 gap-4 bg-[#0f053b] pt-56"
       style={{
         backgroundImage: `url("/images/star-back.png")`,
         backgroundSize: "cover",
@@ -102,7 +104,7 @@ const Meet = () => {
         zIndex: -1,
       }}
     >
-      <div className="left-div">
+      <div className="col-span-1 md:col-span-1 order-2 md:order-1">
         <Image
           src="/images/char4.gif"
           width={1200}
@@ -110,7 +112,8 @@ const Meet = () => {
           alt="3dicons"
         />
       </div>
-      <div className="center-div">
+
+      <div className="col-span-2 md:col-span-2 order-1 flex flex-col justify-center items-center ">
         <h1 className="text-white font-loaded text-4xl  font-semibold leading-normal">
           <span>MEET</span>{" "}
           <span className="text-[#a88aff] font-loaded text-4xl font-semibold leading-normal">
@@ -154,7 +157,8 @@ const Meet = () => {
           </div>
         </button>
       </div>
-      <div className="right-div">
+
+      <div className="col-span-1 md:col-span-1 order-3">
         <Image
           src="/images/running.gif"
           width={450}
