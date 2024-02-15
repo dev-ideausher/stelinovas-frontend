@@ -16,7 +16,10 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="flex fixed flex-wrap items-center justify-between py-5 px-3 rounded-2xl bg-navbar-bg-color sm:w-60 md:w-auto">
+    <nav
+      style={{ zIndex: 5 }}
+      className="flex fixed flex-wrap items-center justify-between py-5 px-7 rounded-sm bg-navbar-bg-color sm:w-80 md:w-auto mt-10"
+    >
       <div className="h-10 flex justify-center items-center">
         <Image
           src="/images/3dicons.png"
@@ -40,7 +43,10 @@ const Navbar = () => {
         <Link href="#" className="text-white hover:text-blue-500 px-3 py-3">
           Contact
         </Link>
-        <Link href="#" className="text-white hover:text-blue-500 px-3 py-3">
+        <Link
+          href="/login"
+          className="text-white hover:text-blue-500 px-3 py-3"
+        >
           Sign in
         </Link>
       </div>
@@ -83,7 +89,7 @@ const Navbar = () => {
           Contact
         </Link>
         <Link
-          href="#"
+          href="/login"
           className="block text-white hover:text-blue-500 px-3 py-3"
         >
           Sign in
