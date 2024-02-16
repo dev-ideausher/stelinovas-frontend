@@ -16,10 +16,7 @@ function Dropdown() {
   const signOutUser = async () => {
     try {
       await signOut(auth);
-      toast.success("User Signed out!", {
-        position: "top-right",
-      });
-      console.log("User logged out");
+      toast.success("User logged out", { position: "top-right" });
     } catch (error) {
       console.log(error);
     }
@@ -39,13 +36,10 @@ function Dropdown() {
         )}
       </button>
       {isOpen && (
-        <ul className="absolute z-10 bg-[#0f053b]  mt-2 rounded-lg shadow-md w-40">
-          <li className="px-4 py-2  hover:cursor-pointer text-white">
-            Change Wallet
-          </li>
+        <ul className="absolute z-10 bg-white mt-2 rounded-lg shadow-md w-40">
           <li
             onClick={() => signOutUser()}
-            className="px-4 py-2  hover:cursor-pointer text-white"
+            className="px-4 py-2 text-gray-700 hover:cursor-pointer"
           >
             Logout
           </li>

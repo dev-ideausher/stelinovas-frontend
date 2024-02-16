@@ -6,9 +6,11 @@ import { useState } from "react";
 import { useFirebaseContext } from "../../contexts/firebaseContext";
 import { FiMenu } from "react-icons/fi";
 import { IoCloseOutline } from "react-icons/io5";
+import Dropdown from "./Dropdown";
 
 const Navbar = () => {
   const { user } = useFirebaseContext();
+  console.log("User ", user);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -45,12 +47,16 @@ const Navbar = () => {
         <Link href="#" className="text-white hover:text-blue-500 px-3 py-3">
           Contact
         </Link>
-        <Link
-          href="/login"
-          className="text-white hover:text-blue-500 px-3 py-3"
-        >
-          Sign in
-        </Link>
+        {user ? (
+          <Dropdown />
+        ) : (
+          <Link
+            href="/login"
+            className="text-white hover:text-blue-500 px-3 py-3"
+          >
+            Sign in
+          </Link>
+        )}
       </div>
       <div className="flex md:hidden">
         <button id="hamburger" onClick={toggleMenu}>
@@ -90,12 +96,16 @@ const Navbar = () => {
         >
           Contact
         </Link>
-        <Link
-          href="/login"
-          className="block text-white hover:text-blue-500 px-3 py-3"
-        >
-          Sign in
-        </Link>
+        {user ? (
+          <Dropdown />
+        ) : (
+          <Link
+            href="/login"
+            className="block text-white hover:text-blue-500 px-3 py-3"
+          >
+            Sign in
+          </Link>
+        )}
       </div>
     </nav>
   );
