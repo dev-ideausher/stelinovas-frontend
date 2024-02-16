@@ -81,7 +81,10 @@ const Meet = () => {
 
       toast.success("Tokens purchased successfully", { position: "top-right" });
     } catch (error: any) {
-      toast.error(error.message, { position: "top-right" });
+      const errorMsg = error.message.split("(")[0];
+      toast.error(errorMsg.toUpperCase(), {
+        position: "top-right",
+      });
       console.log(error.message);
     }
   };
