@@ -7,7 +7,6 @@ import useScreenWidth from "../hooks/useScreenWidth";
 const About = () => {
   const width = useScreenWidth();
   const smallScreen = width < 1200;
-  console.log(smallScreen);
   const controls = useAnimation();
   const divcontrols = useAnimation();
   const [ref, inView] = useInView();
