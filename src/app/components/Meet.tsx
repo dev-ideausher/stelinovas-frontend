@@ -145,17 +145,17 @@ const Meet = () => {
         </div>
 
         <button
-          className="w-[547px] h-[71px] flex-shrink-0 rounded-xl bg-gradient-to-r from-[#6254ff] to-[#756bed] via-[#756bed] text-white text-lg mt-2.5 flex justify-center items-center"
+          className="w-[300px] h-[50px] md:w-[547px] md:h-[71px] flex-shrink-0 rounded-xl bg-gradient-to-r from-[#6254ff] to-[#756bed] via-[#756bed] text-white text-sm md:text-lg mt-2.5 flex justify-center items-center"
           onClick={connect}
         >
-          <IoMdWallet className="text-3xl" />
+          <IoMdWallet className="text-xl md:text-3xl" />
           Connect Wallet
         </button>
         <button
-          className="w-[547px] h-[71px] flex-shrink-0 rounded-xl bg-gradient-to-r from-[#6254ff] to-[#756bed] via-[#756bed] text-white text-lg mt-2.5 flex justify-center items-center"
+          className="w-[300px] h-[50px] md:w-[547px] md:h-[71px] flex-shrink-0 rounded-xl bg-gradient-to-r from-[#6254ff] to-[#756bed] via-[#756bed] text-white text-sm md:text-lg mt-2.5 flex justify-center items-center"
           onClick={() => buyTokens(tokenAmount)}
         >
-          <PiCoinsDuotone className="text-3xl" />
+          <PiCoinsDuotone className="text-xl md:text-3xl" />
           Buy Tokens
         </button>
 
