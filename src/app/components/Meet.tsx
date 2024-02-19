@@ -14,12 +14,10 @@ const Meet = () => {
   const [tokenAmount, setTokenAmount] = useState<number>(0);
   const contractABI = abi.abi;
   const contractAddress = "0x7e6b538CE8c005A28F06cd034804f8a09c29CAd9";
-  const [Ethereum, setEthereum] = useState((window as any).ethereum);
+  const [Ethereum, setEthereum] = useState(
+    typeof window !== "undefined" && (window as any).ethereum
+  );
   const [showWalletBtn, setShowWalletBtn] = useState(true);
-
-  useEffect(() => {
-    setEthereum((window as any).ethereum);
-  }, []);
 
   const connect = async () => {
     try {
