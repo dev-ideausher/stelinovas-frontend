@@ -40,6 +40,7 @@ const Meet = () => {
           method: "wallet_switchEthereumChain",
           params: [{ chainId: "0x13881" }],
         });
+
         toast.success("Netowrk switched", { position: "top-right" });
       }
     } catch (error) {
@@ -143,14 +144,22 @@ const Meet = () => {
           />
         </div>
 
-        <button className="wallet-btn" onClick={connect}>
-          <div className="btn-content">
-            <IoMdWallet className="text-3xl" />
-            <p>Connect wallet</p>
-          </div>
+        <button
+          className="w-[547px] h-[71px] flex-shrink-0 rounded-xl bg-gradient-to-r from-[#6254ff] to-[#756bed] via-[#756bed] text-white text-lg mt-2.5 flex justify-center items-center"
+          onClick={connect}
+        >
+          <IoMdWallet className="text-3xl" />
+          Connect Wallet
+        </button>
+        <button
+          className="w-[547px] h-[71px] flex-shrink-0 rounded-xl bg-gradient-to-r from-[#6254ff] to-[#756bed] via-[#756bed] text-white text-lg mt-2.5 flex justify-center items-center"
+          onClick={() => buyTokens(tokenAmount)}
+        >
+          <PiCoinsDuotone className="text-3xl" />
+          Buy Tokens
         </button>
 
-        <button className="download-btn" onClick={() => buyTokens(tokenAmount)}>
+        <button className="download-btn">
           <div className="btn-content">
             <Image
               src="/images/ion_download.png"

@@ -25,7 +25,8 @@ const config: Config = {
       colors:{
         'faq-color':'rgba(47, 47, 47, 0.5)',
         'faq-box-xolor':'rgba(217, 217, 217, 0.2)',
-        'navbar-bg-color':'rgba(255, 255, 255, 0.07)'
+        'navbar-bg-color':'rgba(255, 255, 255, 0.07)',
+        'wallet-btn':'rgba(164, 119, 249, 0.1)'
       }
     },
   },
