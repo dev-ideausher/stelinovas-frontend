@@ -14,7 +14,12 @@ const Meet = () => {
   const [tokenAmount, setTokenAmount] = useState<number>(0);
   const contractABI = abi.abi;
   const contractAddress = "0x7e6b538CE8c005A28F06cd034804f8a09c29CAd9";
-  const Ethereum = typeof window !== "undefined" && (window as any).ethereum;
+  const [Ethereum, setEthereum] = useState((window as any).ethereum);
+  const [showWalletBtn, setShowWalletBtn] = useState(true);
+
+  useEffect(() => {
+    setEthereum((window as any).ethereum);
+  }, []);
 
   const connect = async () => {
     try {
@@ -43,6 +48,7 @@ const Meet = () => {
 
         toast.success("Netowrk switched", { position: "top-right" });
       }
+      setShowWalletBtn(false);
     } catch (error) {
       console.log(error);
     }
@@ -143,21 +149,23 @@ const Meet = () => {
             alt="gold-coin"
           />
         </div>
-
-        <button
-          className="w-[300px] h-[50px] md:w-[547px] md:h-[71px] flex-shrink-0 rounded-xl bg-gradient-to-r from-[#6254ff] to-[#756bed] via-[#756bed] text-white text-sm md:text-lg mt-2.5 flex justify-center items-center"
-          onClick={connect}
-        >
-          <IoMdWallet className="text-xl md:text-3xl" />
-          Connect Wallet
-        </button>
-        <button
-          className="w-[300px] h-[50px] md:w-[547px] md:h-[71px] flex-shrink-0 rounded-xl bg-gradient-to-r from-[#6254ff] to-[#756bed] via-[#756bed] text-white text-sm md:text-lg mt-2.5 flex justify-center items-center"
-          onClick={() => buyTokens(tokenAmount)}
-        >
-          <PiCoinsDuotone className="text-xl md:text-3xl" />
-          Buy Tokens
-        </button>
+        {!showWalletBtn ? (
+          <button
+            className="w-[300px] h-[50px] md:w-[547px] md:h-[71px] flex-shrink-0 rounded-xl bg-gradient-to-r from-[#6254ff] to-[#756bed] via-[#756bed] text-white text-sm md:text-lg mt-2.5 flex justify-center items-center"
+            onClick={() => buyTokens(tokenAmount)}
+          >
+            <PiCoinsDuotone className="text-xl md:text-3xl" />
+            Buy tokens
+          </button>
+        ) : (
+          <button
+            className="w-[300px] h-[50px] md:w-[547px] md:h-[71px] flex-shrink-0 rounded-xl bg-gradient-to-r from-[#6254ff] to-[#756bed] via-[#756bed] text-white text-sm md:text-lg mt-2.5 flex justify-center items-center"
+            onClick={connect}
+          >
+            <IoMdWallet className="text-xl md:text-3xl" />
+            Connect Wallet
+          </button>
+        )}
 
         <button className="download-btn">
           <div className="btn-content">
