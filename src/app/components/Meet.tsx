@@ -1,4 +1,5 @@
 "use client";
+
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
@@ -13,7 +14,7 @@ const Meet = () => {
   const [tokenAmount, setTokenAmount] = useState<number>(0);
   const contractABI = abi.abi;
   const contractAddress = "0x7e6b538CE8c005A28F06cd034804f8a09c29CAd9";
-  const Ethereum = typeof window !== "undefined" ? window.ethereum : null;
+  const Ethereum = typeof window !== "undefined" && (window as any).ethereum;
 
   const connect = async () => {
     try {
