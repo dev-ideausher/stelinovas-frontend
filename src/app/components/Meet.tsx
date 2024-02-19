@@ -2,19 +2,18 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import detectEthereumProvider from "@metamask/detect-provider";
 import { toast } from "react-toastify";
-import Web3Modal from "web3modal";
 import { ethers } from "ethers";
 import abi from "./abi.json";
 import { IoMdWallet } from "react-icons/io";
+import { PiCoinsDuotone } from "react-icons/pi";
 
 const Meet = () => {
   const [currentAccount, setCurrentAccount] = useState<string>("");
   const [tokenAmount, setTokenAmount] = useState<number>(0);
   const contractABI = abi.abi;
   const contractAddress = "0x7e6b538CE8c005A28F06cd034804f8a09c29CAd9";
-  const Ethereum = typeof window !== "undefined" && window.ethereum;
+  const Ethereum = typeof window !== "undefined" ? window.ethereum : null;
 
   const connect = async () => {
     try {
@@ -142,12 +141,14 @@ const Meet = () => {
             alt="gold-coin"
           />
         </div>
+
         <button className="wallet-btn" onClick={connect}>
           <div className="btn-content">
             <IoMdWallet className="text-3xl" />
-            Connect wallet
+            <p>Connect wallet</p>
           </div>
         </button>
+
         <button className="download-btn" onClick={() => buyTokens(tokenAmount)}>
           <div className="btn-content">
             <Image

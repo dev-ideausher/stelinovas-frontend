@@ -39,9 +39,9 @@ export default function Home() {
       <div>
         <Products />
       </div>
-      {/* <div className="h-screen">
+      <div>
         <Contact />
-      </div> */}
+      </div>
     </div>
     // </FirebaseProvider>
   );
