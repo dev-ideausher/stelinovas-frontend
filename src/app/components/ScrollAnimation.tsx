@@ -6,7 +6,6 @@ export default function ScrollAnimation() {
   const width = useScreenWidth();
   const [progress, setProgress] = useState(0);
   const { scrollYProgress } = useScroll();
-  console.log(progress);
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     if (width < 1200) {
       if (latest > 0.1) {

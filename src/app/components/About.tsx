@@ -12,7 +12,7 @@ const About = () => {
   const [ref, inView] = useInView();
   const imgVariants = {
     entry: { scale: 1.2, opacity: 1, x: 300, rotate: 360 },
-    exit: { scale: 1.8, opacity: 1, x: 0, rotate: 0 },
+    exit: { scale: 1.6, opacity: 1, x: 0, rotate: 0 },
     mobileEntry: { scale: 1, opacity: 1, y: 150, rotate: 360 },
     mobileExit: { scale: 0.8, opacity: 1, y: 0, rotate: 0 },
   };
@@ -64,16 +64,17 @@ const About = () => {
         transition={{
           duration: 2,
         }}
-        className="about-text"
+        className="about-text w-64  md:w-96"
       >
-        <h1 className="sm:text-3xl md:text-4xl text-white mb-2 font-bold">
+        <h1 className="text-2xl md:text-4xl text-white mb-2 font-bold">
           WHAT IS <br /> ICO OSCAR COIN?
         </h1>
-        <p className="text-white">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde,
-          corrupti! Itaque distinctio placeat sed optio necessitatibus voluptate
-          sequi alias reiciendis totam, voluptas officia. Molestiae quasi cumque
-          vitae corrupti fugiat in.
+        <p className="text-white text-sm md:text-base">
+          Jump into <span className="text-[#a88aff]">Stellar Coliseum</span> –
+          it&apos;s you vs. the galaxy in real-time PvP duels! Command a cast of
+          cosmic characters and customize your game for glory. In our blockchain
+          universe, what you earn and conquer, you truly own. Rise from battle
+          to hero, as you master this cosmic universe. Ready to make your move?
         </p>
       </motion.div>
     </div>
