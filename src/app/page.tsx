@@ -20,7 +20,7 @@ export default function Home() {
       <div className="h-screen">
         <About />
       </div>
-      <div>
+      <div className="roadmap">
         <Roadmap />
       </div>
       <div>

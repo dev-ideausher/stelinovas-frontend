@@ -2,16 +2,25 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useFirebaseContext } from "../../contexts/firebaseContext";
 import { FiMenu } from "react-icons/fi";
 import { IoCloseOutline } from "react-icons/io5";
+import { FaExternalLinkAlt } from "react-icons/fa";
 import Dropdown from "./Dropdown";
 
 const Navbar = () => {
   const { user } = useFirebaseContext();
-  console.log("User ", user);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const roadmap = useRef(null);
+
+  const scrollToSection = (sectionRef: any) => {
+    window.scrollTo({
+      top: sectionRef.current.offsetTop,
+      behavior: "smooth",
+    });
+  };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -20,7 +29,7 @@ const Navbar = () => {
   return (
     <nav
       style={{ zIndex: 5 }}
-      className="flex fixed flex-wrap items-center justify-between py-5 px-7 rounded-sm bg-navbar-bg-color sm:w-80 md:w-auto mt-10"
+      className="flex fixed flex-wrap items-center justify-between py-5 px-7 rounded-md bg-navbar-bg-color sm:w-80 md:w-auto mt-10"
     >
       <Link href="/" className="h-10 flex justify-center items-center">
         <Image
@@ -38,14 +47,21 @@ const Navbar = () => {
         <Link href="#" className="text-white hover:text-blue-500 px-3 py-3">
           About
         </Link>
-        <Link href="#" className="text-white hover:text-blue-500 px-3 py-3">
+        <div
+          onClick={() => scrollToSection(roadmap)}
+          className="text-white hover:text-blue-500 px-3 py-3"
+        >
           Roadmap
-        </Link>
-        <Link href="#" className="text-white hover:text-blue-500 px-3 py-3">
-          Product
-        </Link>
+        </div>
         <Link href="#" className="text-white hover:text-blue-500 px-3 py-3">
           Contact
+        </Link>
+        <Link
+          href="#"
+          className="text-white hover:text-blue-500 px-3 py-3 flex items-center gap-1"
+        >
+          Whitepaper
+          <FaExternalLinkAlt className="text-xs" />
         </Link>
         {user ? (
           <Dropdown />
@@ -86,10 +102,11 @@ const Navbar = () => {
         </Link>
         <Link
           href="#"
-          className="block text-white hover:text-blue-500 px-3 py-3"
+          className="block text-white hover:text-blue-500 px-3 py-3  items-center gap-1"
         >
-          Product
+          Whitepaper
         </Link>
+
         <Link
           href="#"
           className="block text-white hover:text-blue-500 px-3 py-3"

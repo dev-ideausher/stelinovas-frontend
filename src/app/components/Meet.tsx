@@ -164,18 +164,6 @@ const Meet = () => {
             Connect Wallet
           </button>
         )}
-
-        <button className="download-btn">
-          <div className="btn-content">
-            <Image
-              src="/images/ion_download.png"
-              width={30}
-              height={30}
-              alt="download"
-            />
-            Download Whitepaper
-          </div>
-        </button>
       </div>
 
       <div className="col-span-1 md:col-span-1 order-3">

@@ -6,6 +6,9 @@
   margin: 0;
   padding: 0;
 }
+html {
+  scroll-behavior: smooth;
+}
 .clip-trapezium {
   clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
 }
@@ -220,9 +223,6 @@ input[type="number"] {
 }
 
 /* ROADMAP COMPONENT */
-.roadmap-container {
-  background-color: #0f053b;
-}
 
 /* FEATURES COMPONENT */
 .features-container {
