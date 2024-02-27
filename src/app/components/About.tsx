@@ -67,7 +67,7 @@ const About = () => {
         className="about-text w-64  md:w-96"
       >
         <h1 className="text-2xl md:text-4xl text-white mb-2 font-bold">
-          WHAT IS <br /> ICO OSCAR COIN?
+          INTERSTELLAR SUPREMACY
         </h1>
         <p className="text-white text-sm md:text-base">
           Jump into <span className="text-[#a88aff]">Stellar Coliseum</span> –
