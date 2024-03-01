@@ -61,7 +61,6 @@ const Navbar = () => {
           className="text-white hover:text-blue-500 px-3 py-3 flex items-center gap-1"
         >
           Whitepaper
-          <FaExternalLinkAlt className="text-xs" />
         </Link>
         {user ? (
           <Dropdown />
