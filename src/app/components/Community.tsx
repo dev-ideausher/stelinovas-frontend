@@ -23,7 +23,7 @@ const Community = () => {
             <p className="text-white">Twitter</p>
           </div>
         </Link>
-        <Link href="https://discord.com/" target="_blank">
+        <Link href="https://discord.gg/k9n4Zgqw" target="_blank">
           <div className="flex items-center justify-center flex-col p-10 h-40 w-40 rounded-full cursor-pointer hover:bg-[#a88aff] bg-navbar-bg-color my-10 md:my-20">
             <BsDiscord className="text-white text-6xl" />
             <p className="text-white">Discord</p>
