@@ -75,11 +75,22 @@ const Meet = () => {
         "<===================== price per token =====================>",
         pricePerToken.toString()
       );
-      const amount = Number(pricePerToken) * tokenAmount;
-      const amountInEth = ethers.parseEther(amount.toString());
 
-      const transaction = await contract.buyTokens(tokenAmount, {
-        value: amountInEth,
+      // Earlier code provided by Vipin Saini
+
+      // const amount = Number(pricePerToken) * tokenAmount;
+      // const amountInEth = ethers.parseEther(amount.toString());
+
+      // const transaction = await contract.buyTokens(tokenAmount, {
+      //   value: amountInEth,
+      // });
+
+      // Enhanced new code provided by Jenith Sharma
+      const amountInWei = ethers.parseEther(tokenAmount.toString());
+      const feesAmount = Number(pricePerToken) * Number(amountInWei);
+
+      const transaction = await contract.buyTokens(amountInWei, {
+        value: feesAmount,
       });
 
       await transaction.wait();
