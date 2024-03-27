@@ -39,11 +39,6 @@
             "type": "error"
         },
         {
-            "inputs": [],
-            "name": "ReentrancyGuardReentrantCall",
-            "type": "error"
-        },
-        {
             "anonymous": false,
             "inputs": [
                 {
@@ -153,19 +148,6 @@
             "type": "function"
         },
         {
-            "inputs": [],
-            "name": "getBalance",
-            "outputs": [
-                {
-                    "internalType": "uint256",
-                    "name": "",
-                    "type": "uint256"
-                }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
             "inputs": [
                 {
                     "internalType": "address",
@@ -251,12 +233,12 @@
         },
         {
             "inputs": [],
-            "name": "getTokenAddress",
+            "name": "getTimeStamp",
             "outputs": [
                 {
-                    "internalType": "address",
+                    "internalType": "uint256",
                     "name": "",
-                    "type": "address"
+                    "type": "uint256"
                 }
             ],
             "stateMutability": "view",

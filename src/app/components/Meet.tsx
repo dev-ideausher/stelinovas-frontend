@@ -12,8 +12,14 @@ import { PiCoinsDuotone } from "react-icons/pi";
 const Meet = () => {
   const [currentAccount, setCurrentAccount] = useState<string>("");
   const [tokenAmount, setTokenAmount] = useState<number>(0);
+  const [showInput, setShowInput] = useState<boolean>(false);
   const contractABI = abi.abi;
-  const contractAddress = "0x7e6b538CE8c005A28F06cd034804f8a09c29CAd9";
+
+  // Contract address provided by Vipin
+  // const contractAddress = "0x7e6b538CE8c005A28F06cd034804f8a09c29CAd9";
+
+  // Contract address provided by Jenith
+  const contractAddress = "0x5d86442158aDC9291486eb703935B2f0F9902AAf";
   const [Ethereum, setEthereum] = useState(
     typeof window !== "undefined" && (window as any).ethereum
   );
@@ -35,6 +41,7 @@ const Meet = () => {
       console.log(accounts[0]);
       setCurrentAccount(accounts[0]);
       toast.success("Wallet connected", { position: "top-right" });
+      setShowInput(true);
       const chainId = await Ethereum.request({ method: "eth_chainId" });
       if (chainId == "0x13881") {
         console.log(chainId);
@@ -87,7 +94,10 @@ const Meet = () => {
 
       // Enhanced new code provided by Jenith Sharma
       const amountInWei = ethers.parseEther(tokenAmount.toString());
-      const feesAmount = Number(pricePerToken) * Number(amountInWei);
+      console.log("Wei type", typeof amountInWei);
+      const feesAmount = (
+        Number(pricePerToken) * Number(amountInWei)
+      ).toString();
 
       const transaction = await contract.buyTokens(amountInWei, {
         value: feesAmount,
@@ -142,22 +152,25 @@ const Meet = () => {
         <p className="text-white text-xs mb-10">
           The best game in 2023 with a lot of features
         </p>
-        <div className="coin-input-container">
-          <input
-            className="coin-input"
-            type="number"
-            placeholder="0.0"
-            value={tokenAmount}
-            onChange={(e) => setTokenAmount(parseFloat(e.target.value))}
-          />
-          <Image
-            className="gold-coin"
-            src="/images/gold-coin.png"
-            width={40}
-            height={40}
-            alt="gold-coin"
-          />
-        </div>
+        {showInput && (
+          <div className="coin-input-container">
+            <input
+              className="coin-input"
+              type="number"
+              placeholder="0.0"
+              value={tokenAmount}
+              onChange={(e) => setTokenAmount(parseFloat(e.target.value))}
+            />
+            <Image
+              className="gold-coin"
+              src="/images/gold-coin.png"
+              width={40}
+              height={40}
+              alt="gold-coin"
+            />
+          </div>
+        )}
+
         {!showWalletBtn ? (
           <button
             className="w-[300px] h-[50px] md:w-[547px] md:h-[71px] flex-shrink-0 rounded-xl bg-gradient-to-r from-[#6254ff] to-[#756bed] via-[#756bed] text-white text-sm md:text-lg mt-2.5 flex justify-center items-center"
